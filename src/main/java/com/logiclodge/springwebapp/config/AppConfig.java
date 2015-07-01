@@ -1,7 +1,6 @@
 package com.logiclodge.springwebapp.config;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -27,11 +26,6 @@ public class AppConfig {
 	@Inject
 	ApiApplication apiApplication;
 
-	@Bean
-	public JacksonJsonProvider jsonProvider() {
-		return new JacksonJsonProvider();
-	}
-
 	@Bean(destroyMethod = "shutdown")
 	public SpringBus cxf() {
 		return new SpringBus();
@@ -39,12 +33,12 @@ public class AppConfig {
 
 	@Bean
 	@DependsOn("cxf")
-	public Server jaxRsServer() {
+	public Server getServer() {
 		JAXRSServerFactoryBean factory = RuntimeDelegate.getInstance().createEndpoint(apiApplication,
 				JAXRSServerFactoryBean.class);
 		factory.setServiceBeans(new ArrayList<Object>(resources));
 		factory.setAddress("/" + factory.getAddress());
-		factory.setProviders(Arrays.asList(jsonProvider()));
+		factory.setProvider(new JacksonJsonProvider());
 		return factory.create();
 	}
 }
