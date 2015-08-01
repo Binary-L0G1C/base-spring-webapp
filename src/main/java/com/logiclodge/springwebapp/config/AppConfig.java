@@ -37,7 +37,7 @@ public class AppConfig {
 		JAXRSServerFactoryBean factory = RuntimeDelegate.getInstance().createEndpoint(apiApplication,
 				JAXRSServerFactoryBean.class);
 		factory.setServiceBeans(new ArrayList<Object>(resources));
-		factory.setAddress("/" + factory.getAddress());
+		//factory.setAddress(factory.getAddress());
 		factory.setProvider(new JacksonJsonProvider());
 		return factory.create();
 	}
