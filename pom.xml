@@ -116,7 +116,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
-				<version>1.7</version>
+				<version>2.4.1</version>
 				<executions>
 				
 					<execution>
@@ -132,39 +132,20 @@
 							<!-- Optional End -->
 			
 							<transformers>
-							
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>com.logiclodge.springwebapp.Start</mainClass>
-								</transformer>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
-									<resource>META-INF/cxf/cxf-extension-xml.xml</resource>
-								</transformer>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 									<resource>META-INF/cxf/bus-extensions.txt</resource>
 								</transformer>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
-									<resource>META-INF/cxf/cxf-extension-http-jetty.xml</resource>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+									<resource>META-INF/spring.handlers</resource>
 								</transformer>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
-									<resource>META-INF/cxf/cxf-extension-http.xml</resource>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+									<resource>META-INF/spring.schemas</resource>
 								</transformer>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
-									<resource>META-INF/cxf/cxf-servlet.xml</resource>
+								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+									<resource>META-INF/spring.tooling</resource>
 								</transformer>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
-									<resource>META-INF/cxf/cxf.xml</resource>
-								</transformer>
-			
 							</transformers>
 							<filters>
-							
 								<filter>
 									<artifact>*:*</artifact>
 									<excludes>
@@ -173,7 +154,6 @@
 										<exclude>META-INF/*.RSA</exclude>
 									</excludes>
 								</filter>
-								
 							</filters>
 						</configuration>
 					</execution>
