@@ -1,9 +1,9 @@
 require.config({ 
 	paths : { 
-		jquery : 'lib/jquery-2.2.2.min',
-		lodash : 'lib/lodash', 
-		backbone : 'lib/backbone-min',
-		text : 'lib/text'
+		jquery : '../node_modules/jquery/dist/jquery.min',
+		lodash : '../node_modules/lodash/index',
+		backbone : '../node_modules/backbone/backbone-min',
+		text : '../node_modules/requirejs-text/text'
 	},
 	shim : {
 		backbone : {
