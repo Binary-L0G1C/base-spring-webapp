@@ -1,5 +1,7 @@
 package com.logiclodge.springwebapp;
 
+import java.io.File;
+
 import org.apache.cxf.transport.servlet.CXFServlet;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
@@ -7,6 +9,7 @@ import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 
@@ -28,7 +31,15 @@ public class Start {
 		final ResourceHandler resource_handler = new ResourceHandler();
 		resource_handler.setDirectoriesListed(true);
 		resource_handler.setWelcomeFiles(new String[] { "index.html" });
-		resource_handler.setResourceBase("./src/main/webapp/");
+
+		// Try to find the webapp files in source
+		File basePath = new File("./src/main/webapp/logiclodge-webapp/");
+		if (basePath.exists()) {
+			resource_handler.setResourceBase(basePath.getPath());
+		} else {
+			// Otherwise grab them from the classpath (usually inside the jar)
+			resource_handler.setResourceBase(new ClassPathResource("logiclodge-webapp").getURI().toString());
+		}
 
 		final HandlerList handlers = new HandlerList();
 		handlers.setHandlers(new Handler[] { resource_handler, context });
