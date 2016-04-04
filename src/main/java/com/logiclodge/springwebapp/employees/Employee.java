@@ -1,6 +1,8 @@
 package com.logiclodge.springwebapp.employees;
 
-public class Employee {
+import com.logiclodge.springwebapp.base.BaseResourceObject;
+
+public class Employee implements BaseResourceObject{
 	private String id;
 	private String name;
 
