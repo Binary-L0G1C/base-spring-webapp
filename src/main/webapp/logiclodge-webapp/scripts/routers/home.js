@@ -2,11 +2,11 @@ define([
 	'jquery', 
 	'lodash',
 	'backbone', 
-	'views/view'], 
-function ($, _, Backbone, mainView) {
+	'home/homeView'], 
+function ($, _, Backbone, homeView) {
 	var Router = Backbone.Router.extend({
 		initialize : function () {
-			this.mainView = mainView;
+			this.homeView = homeView;
 			Backbone.history.start();
 		},
 
@@ -15,7 +15,7 @@ function ($, _, Backbone, mainView) {
 		},
 
 		home : function () {
-			this.mainView.render();
+			this.homeView.render();
 		}
 	});
 

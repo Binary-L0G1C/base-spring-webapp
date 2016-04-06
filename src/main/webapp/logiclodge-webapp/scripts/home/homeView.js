@@ -2,9 +2,9 @@ define([
 		'jquery', 
 		'lodash',
 		'backbone',
-		'models/model',
-		'text!templates/main.html'
-], function ($, _, Backbone, model, mainTemplate) {
+		'home/homeModel',
+		'text!home/home.html'
+], function ($, _, Backbone, model, homeTemplate) {
 	var View = Backbone.View.extend({
 		el: '#main',
 
@@ -13,7 +13,7 @@ define([
 				message: 'Hello Catgirl World!'
 			});
 
-			this.template = _.template(mainTemplate);
+			this.template = _.template(homeTemplate);
 		},
 
 		render : function () {
