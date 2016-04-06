@@ -112,7 +112,7 @@
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
-				<version>0.0.27</version>
+				<version>0.0.29</version>
 				<configuration>
 					<workingDirectory>src/main/webapp/logiclodge-webapp</workingDirectory>
 					<installDirectory>target</installDirectory>
