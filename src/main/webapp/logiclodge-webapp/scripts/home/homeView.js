@@ -4,16 +4,16 @@ define([
 		'backbone',
 		'home/homeModel',
 		'text!home/home.html'
-], function ($, _, Backbone, model, homeTemplate) {
-	var View = Backbone.View.extend({
-		el: '#main',
+], function ($, _, Backbone, Model, homeTemplate) {
+	var HomeView = Backbone.View.extend({
+		el : '#main',
+
+		template : _.template(homeTemplate),
 
 		initialize : function () {
-			this.model = new model({
+			this.model = new Model({
 				message: 'Hello Catgirl World!'
 			});
-
-			this.template = _.template(homeTemplate);
 		},
 
 		render : function () {
@@ -23,5 +23,5 @@ define([
 		}
 	});
 
-	return new View();
+	return new HomeView();
 });

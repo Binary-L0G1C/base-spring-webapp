@@ -1,0 +1,7 @@
+<div>
+	<h3>Employee id: <%= model.id %></h3>
+	<h3>Employee name: <%= model.name %></h3>
+	<% if (model.imageUrl) { %>
+		<h3>Employee image: <img src='<%= model.imageUrl %>' /></h3>
+	<% } %>
+</div>

@@ -3,7 +3,7 @@ define([
 	'lodash',
 	'backbone'
 ], function ($, _, Backbone) {
-	var Model = Backbone.Model.extend({});
+	var HomeModel = Backbone.Model.extend({});
 
-	return Model;
+	return HomeModel;
 });
