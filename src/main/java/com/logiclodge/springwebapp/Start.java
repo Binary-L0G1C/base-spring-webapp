@@ -9,6 +9,7 @@ import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import org.eclipse.jetty.util.resource.PathResource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -35,7 +36,7 @@ public class Start {
 		// Try to find the webapp files in source
 		File basePath = new File("./src/main/webapp/logiclodge-webapp/");
 		if (basePath.exists()) {
-			resource_handler.setResourceBase(basePath.getPath());
+			resource_handler.setBaseResource(new PathResource(basePath));
 		} else {
 			// Otherwise grab them from the classpath (usually inside the jar)
 			resource_handler.setResourceBase(new ClassPathResource("logiclodge-webapp").getURI().toString());

@@ -11,10 +11,11 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<org.apache.cxf.version>3.1.1</org.apache.cxf.version>
-		<org.eclipse.jetty.version> 9.2.10.v20150310</org.eclipse.jetty.version>
+		<org.apache.cxf.version>3.1.6</org.apache.cxf.version>
+		<org.eclipse.jetty.version> 9.2.15.v20160210</org.eclipse.jetty.version>
 		<org.springframework.version>4.2.0.RELEASE</org.springframework.version>
 		<org.codehaus.jackson.version>1.9.11</org.codehaus.jackson.version>
+		<org.slf4j.version>1.7.21</org.slf4j.version>
 
 	</properties>
 
@@ -24,6 +25,12 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>${org.springframework.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -37,7 +44,7 @@
 			<artifactId>spring-web</artifactId>
 			<version>${org.springframework.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-jaxrs</artifactId>
@@ -49,23 +56,37 @@
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>${org.codehaus.jackson.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-core</artifactId>
 			<version>${org.apache.cxf.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
 			<version>${org.apache.cxf.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-transports-http-jetty</artifactId>
 			<version>${org.apache.cxf.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>>org.eclipse.jetty</groupId>
+					<artifactId>jetty-io</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>>org.eclipse.jetty</groupId>
+					<artifactId>jetty-security</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>>org.eclipse.jetty</groupId>
+					<artifactId>jetty-continuation</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -85,17 +106,62 @@
 			<artifactId>jetty-webapp</artifactId>
 			<version>${org.eclipse.jetty.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-http</artifactId>
 			<version>${org.eclipse.jetty.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-util</artifactId>
 			<version>${org.eclipse.jetty.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-io</artifactId>
+			<version>${org.eclipse.jetty.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-security</artifactId>
+			<version>${org.eclipse.jetty.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-continuation</artifactId>
+			<version>${org.eclipse.jetty.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${org.slf4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${org.slf4j.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>log4j-over-slf4j</artifactId>
+			<version>${org.slf4j.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.1.7</version>
+			<scope>runtime</scope>
 		</dependency>
 
 	</dependencies>
@@ -104,6 +170,10 @@
 		<resources>
 			<resource>
 				<directory>src/main/webapp</directory>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
 			</resource>
 		</resources>
 
@@ -167,7 +237,7 @@
 							<shadedArtifactAttached>true</shadedArtifactAttached>
 							<shadedClassifierName>jar-with-dependencies</shadedClassifierName>
 							<!-- Optional End -->
-			
+
 							<transformers>
 								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 									<resource>META-INF/cxf/bus-extensions.txt</resource>
@@ -194,10 +264,10 @@
 							</filters>
 						</configuration>
 					</execution>
-					
+
 				</executions>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
@@ -209,7 +279,56 @@
 					</archive>
 				</configuration>
 			</plugin>
-			
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>1.4.1</version>
+				<inherited>true</inherited>
+
+				<executions>
+					<execution>
+						<id>enforce-maven</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<version>[3.1.0,)</version>
+								</requireMavenVersion>
+							</rules>
+							<fail>true</fail>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>enforce-banned-dependencies</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<bannedDependencies>
+									<excludes>
+										<!-- Exclude commons-logging and log4j due to conflict with slf4j and logback -->
+										<exclude>commons-logging:commons-logging</exclude>
+										<exclude>log4j:log4j</exclude>
+										<!-- Exclude org.apache.commons:commons-io due to conflict with commons-io:commons-io -->
+										<exclude>org.apache.commons:commons-io</exclude>
+										<!-- Exclude org.hamcrest:hamcrest-core due to conflict with org.hamcrest:hamcrest-all -->
+										<exclude>org.hamcrest:hamcrest-core</exclude>
+										<!-- Exclude junit:junit due to conflict with org.hamcrest:hamcrest-all and junit:junit-dep -->
+										<exclude>junit:junit</exclude>
+									</excludes>
+								</bannedDependencies>
+							</rules>
+							<fail>true</fail>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 
