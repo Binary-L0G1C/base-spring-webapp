@@ -2,7 +2,7 @@ define([
 		'jquery', 
 		'lodash',
 		'backbone',
-		'home/homeModel',
+		'home/HomeModel',
 		'text!home/home.html'
 ], function ($, _, Backbone, Model, homeTemplate) {
 	var HomeView = Backbone.View.extend({
@@ -23,5 +23,5 @@ define([
 		}
 	});
 
-	return new HomeView();
+	return HomeView;
 });

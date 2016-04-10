@@ -21,6 +21,10 @@ define([
 			if (!_.isEmpty(errors)) {
 				return errors;
 			}
+		},
+
+		url : function () {
+			return 'http://127.0.0.1:8181/rest/api/employees/42';
 		}
 	});
 
