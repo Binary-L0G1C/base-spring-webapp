@@ -22,5 +22,14 @@ public class EmployeeService {
 	public Employee getEmployeeById(String id) {
 		return dao.get(id);
 	}
+	
+	public Employee saveEmployee(Employee employee) {
+		dao.save(employee);
+		return getEmployeeById(employee.getId());
+	}
+	
+	public void deleteEmployee(String id) {
+		dao.delete(id);
+	}
 
 }

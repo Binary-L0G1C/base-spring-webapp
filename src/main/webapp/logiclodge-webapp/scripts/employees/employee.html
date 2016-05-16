@@ -4,12 +4,21 @@
 		<ul>
 			<li><b>Id:</b> <%= model.id %></li>
 			<li><b>Name:</b> <%= model.name %></li>
+			<li><b>Birthday:</b> 
+				<% if (model.dateOfBirth) { %>
+					<!--<input type="text" name="date" class="dob">-->
+					<%= model.dateOfBirth %>
+				<% } else { %>
+					Unknown
+				<% } %>
+			</li>
 			<% if (model.imageUrl) { %>
 				<li><b>Image:</b> <img src='<%= model.imageUrl %>' /></li>
 			<% } %>
 		</ul>
 		<span style='float:right;font-size:0.7em;'>
 			<button class='editEmployeeButton'>Edit</button>
+			<button class='deleteEmployeeButton'>Delete</button>
 		</span>
 	</div>
 </div>

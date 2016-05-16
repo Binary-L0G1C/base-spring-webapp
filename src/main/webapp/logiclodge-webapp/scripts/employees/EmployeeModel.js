@@ -6,6 +6,7 @@ define([
 		defaults : {
 			id : '',
 			name : '',
+			dateOfBirth : '',
 			imageUrl : ''
 		},
 
@@ -24,7 +25,7 @@ define([
 		},
 
 		url : function () {
-			return 'http://127.0.0.1:8181/rest/api/employees/42';
+			return 'http://127.0.0.1:8181/rest/api/employees/' + this.id;
 		}
 	});
 
