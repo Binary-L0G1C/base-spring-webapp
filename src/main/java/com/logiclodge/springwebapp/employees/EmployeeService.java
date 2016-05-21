@@ -1,7 +1,9 @@
 package com.logiclodge.springwebapp.employees;
 
 import java.util.Collection;
+import java.util.UUID;
 
+import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,11 @@ public class EmployeeService {
 	}
 	
 	public Employee saveEmployee(Employee employee) {
+		// check if it is a new
+		if (NumberUtils.toInt(employee.getId()) < 0){
+			employee.setId(UUID.randomUUID().toString());
+		}
+		
 		dao.save(employee);
 		return getEmployeeById(employee.getId());
 	}

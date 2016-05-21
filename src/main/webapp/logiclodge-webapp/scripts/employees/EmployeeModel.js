@@ -24,6 +24,16 @@ define([
 			}
 		},
 
+		saveEmployee : function (employee) {
+			this.set({
+				name : employee.name,
+				dateOfBirth : employee.dateOfBirth,
+				imageUrl : employee.imageUrl
+			});
+
+			this.save();
+		},
+
 		url : function () {
 			return 'http://127.0.0.1:8181/rest/api/employees/' + this.id;
 		}

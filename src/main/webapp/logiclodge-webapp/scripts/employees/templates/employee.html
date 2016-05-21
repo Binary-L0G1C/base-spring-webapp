@@ -1,19 +1,19 @@
 <div class='employee'>
-	<h3><%= model.name %> <span style='float:right;font-size:0.7em;'>Details...</span></h3>
+	<h3><%- model.name %> <span style='float:right;font-size:0.7em;'>Details...</span></h3>
 	<div>
 		<ul>
-			<li><b>Id:</b> <%= model.id %></li>
-			<li><b>Name:</b> <%= model.name %></li>
+			<li><b>Id:</b> <%- model.id %></li>
+			<li><b>Name:</b> <%- model.name %></li>
 			<li><b>Birthday:</b> 
 				<% if (model.dateOfBirth) { %>
 					<!--<input type="text" name="date" class="dob">-->
-					<%= model.dateOfBirth %>
+					<%- model.dateOfBirth %>
 				<% } else { %>
 					Unknown
 				<% } %>
 			</li>
 			<% if (model.imageUrl) { %>
-				<li><b>Image:</b> <img src='<%= model.imageUrl %>' /></li>
+				<li><b>Image:</b> <img src='<%- model.imageUrl %>' /></li>
 			<% } %>
 		</ul>
 		<span style='float:right;font-size:0.7em;'>

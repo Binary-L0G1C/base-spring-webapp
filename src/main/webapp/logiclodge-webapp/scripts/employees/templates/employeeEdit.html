@@ -1,0 +1,19 @@
+<div id="dialog-form" title="Edit user">
+	<p class="validateTips">All form fields are required.</p>
+
+	<form>
+		<fieldset>
+			<label for="name">Name</label>
+			<input type="text" name="name" class="employee-edit-name text ui-widget-content" value="<%- model.name %>" style="display:block; margin-bottom:12px; width:95%; padding: .4em;">
+
+			<label for="dob">Date of Birth</label>
+			<input type="text" name="dob"  class="employee-edit-dob text ui-widget-content"  value="<%- model.dateOfBirth %>" style="display:block; margin-bottom:12px; width:95%; padding: .4em;">
+
+			<label for="url">Image URL</label>
+			<input type="text" name="url"  class="employee-edit-url text ui-widget-content"  value="<%- model.imageUrl %>" style="display:block; margin-bottom:12px; width:95%; padding: .4em;">
+
+			<!-- Allow form submission with keyboard without duplicating the dialog button -->
+			<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+		</fieldset>
+	</form>
+</div>
