@@ -31,11 +31,11 @@ define([
 				imageUrl : employee.imageUrl
 			});
 
-			this.save();
+			this.save(employee);
 		},
 
 		url : function () {
-			return 'http://127.0.0.1:8181/rest/api/employees/' + this.id;
+			return '/rest/api/employees/' + this.id;
 		}
 	});
 

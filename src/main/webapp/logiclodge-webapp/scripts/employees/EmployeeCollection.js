@@ -7,7 +7,7 @@ define([
 	var EmployeeCollection = Backbone.Collection.extend({
 
 		model : Model,
-		url : 'http://127.0.0.1:8181/rest/api/employees'
+		url : '/rest/api/employees'
 
 	});
 

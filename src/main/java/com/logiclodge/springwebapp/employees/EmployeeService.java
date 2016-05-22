@@ -26,7 +26,7 @@ public class EmployeeService {
 	}
 	
 	public Employee saveEmployee(Employee employee) {
-		// check if it is a new
+		// check if it is new
 		if (NumberUtils.toInt(employee.getId()) < 0){
 			employee.setId(UUID.randomUUID().toString());
 		}
