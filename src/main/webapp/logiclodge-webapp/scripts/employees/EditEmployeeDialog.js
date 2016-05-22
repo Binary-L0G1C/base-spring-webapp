@@ -7,6 +7,7 @@ define([
 
 	var DEFAULT_OPTIONS = {
 		employee : {},
+		destroyOnClose : false,
 		saveEmployeeCallback : _.noop
 	}
 
@@ -31,12 +32,11 @@ define([
 			},
 			buttons: {
 				Save : function(){
-					var $this = $(this);
-					that.saveEmployee($this);
-					$this.dialog('close');
+					that.saveEmployee($(this));
+					that.close();
 				},
 				Cancel : function() {
-					$(this).dialog('close');
+					that.close();
 				}
 			},
 			close: function() {
@@ -64,6 +64,9 @@ define([
 
 		close : function () {
 			this.$el.dialog('close');
+			if (this._options.destroyOnClose) {
+				this.$el.dialog('destroy');
+			}
 		},
 
 		saveEmployee : function ($form) {

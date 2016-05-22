@@ -8,6 +8,7 @@ define([
 	var DEFAULT_OPTIONS = {
 		name : '&lt;name&gt;',
 		type : '&lt;type&gt;',
+		destroyOnClose : false,
 		deleteCallback : _.noop
 	}
 
@@ -28,11 +29,11 @@ define([
 			modal: true,
 			buttons: {
 				Delete: function() {
-					$(this).dialog('close');
+					that.close();
 					that._options.deleteCallback.call();
 				},
 				Cancel: function() {
-					$(this).dialog('close');
+					that.close();
 				}
 			}
 		});
@@ -49,6 +50,9 @@ define([
 
 		close : function () {
 			this.$el.dialog('close');
+			if (this._options.destroyOnClose) {
+				this.$el.dialog('destroy');
+			}
 		}
 	}
 	

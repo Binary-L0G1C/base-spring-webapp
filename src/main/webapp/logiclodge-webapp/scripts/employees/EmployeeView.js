@@ -16,23 +16,6 @@ define([
 			this.listenTo(this.model, 'change', this.render);
 			this.listenTo(this.model, 'destroy', this.remove);
 			this.listenTo(this.model, 'visible', this.toggleVisible);
-
-			var that = this;
-
-			this.employeeEditDialog = new EditEmployeeDialog({
-				employee : this.model.toJSON(),
-				saveEmployeeCallback : function (employee) {
-					that.model.saveEmployee(employee);
-				}
-			});
-
-			this.deleteDialog = new ConfirmDeleteDialog({
-				name : this.model.get('name'),
-				type : 'Employee',
-				deleteCallback : function () {
-					that.model.destroy();
-				}
-			});
 		},
 
 		render : function () {
@@ -53,7 +36,13 @@ define([
 					secondary: 'ui-icon-pencil'
 				}
 			}).on('click', function() {
-				that.employeeEditDialog.show();
+				new EditEmployeeDialog({
+					employee : that.model.toJSON(),
+					destroyOnClose : true,
+					saveEmployeeCallback : function (employee) {
+						that.model.saveEmployee(employee);
+					}
+				}).show();
 			});
 
 			this.$el.find('.deleteEmployeeButton').button({
@@ -61,7 +50,14 @@ define([
 					secondary: 'ui-icon-trash'
 				}
 			}).on('click', function() {
-				that.deleteDialog.show();
+				new ConfirmDeleteDialog({
+					name : that.model.get('name'),
+					type : 'Employee',
+					destroyOnClose : true,
+					deleteCallback : function () {
+						that.model.destroy();
+					}
+				}).show();
 			});
 
 			return this;
