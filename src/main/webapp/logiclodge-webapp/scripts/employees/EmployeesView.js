@@ -36,16 +36,16 @@ define([
 
 			this.$el.html(this.template());
 
-			this.collection.each(function(employee) {
+			this.collection.each(function (employee) {
 				var employeeView = new EmployeeView({model : employee});
 				this.$el.find('#employeeList').append(employeeView.render().el);
 			}, this);
 
 			this.$el.find('.addEmployeeButton').button({
-				icons: {
+				icons : {
 					secondary: 'ui-icon-person'
 				}
-			}).on('click', function() {
+			}).on('click', function () {
 				that.employeeEditDialog.show();
 			});
 		}

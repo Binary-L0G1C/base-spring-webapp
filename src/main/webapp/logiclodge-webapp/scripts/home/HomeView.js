@@ -12,7 +12,7 @@ define([
 
 		initialize : function () {
 			this.model = new Model({
-				message: 'Hello Catgirl World!'
+				message : 'Hello Catgirl World!'
 			});
 		},
 

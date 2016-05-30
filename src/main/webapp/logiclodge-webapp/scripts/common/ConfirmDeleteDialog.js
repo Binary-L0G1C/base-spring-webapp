@@ -22,17 +22,17 @@ define([
 				type : this._options.type
 			}
 		})).dialog({
-			autoOpen: false,
-			resizable: false,
-			height:240,
-			width: 400,
-			modal: true,
+			autoOpen : false,
+			resizable : false,
+			height : 240,
+			width : 400,
+			modal : true,
 			buttons: {
-				Delete: function() {
+				Delete : function () {
 					that.close();
 					that._options.deleteCallback.call();
 				},
-				Cancel: function() {
+				Cancel : function () {
 					that.close();
 				}
 			}

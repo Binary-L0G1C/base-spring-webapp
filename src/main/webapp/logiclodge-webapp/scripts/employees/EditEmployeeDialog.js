@@ -18,29 +18,29 @@ define([
 		this.$el = $(this.template({
 				model : this._options.employee
 		})).dialog({
-			autoOpen: false,
-			height: 500,
-			width: 450,
-			modal: true,
-			show: {
-				effect: 'bounce',
-				duration: 1500
+			autoOpen : false,
+			height : 500,
+			width : 450,
+			modal : true,
+			show : {
+				effect : 'bounce',
+				duration : 1500
 			},
-			hide: {
-				effect: 'explode',
-				duration: 500
+			hide : {
+				effect : 'explode',
+				duration : 500
 			},
-			buttons: {
-				Save : function(){
+			buttons : {
+				Save : function () {
 					that.saveEmployee($(this));
 					that.close();
 				},
-				Cancel : function() {
+				Cancel : function () {
 					that.close();
 				}
 			},
-			close: function() {
-				that.form[ 0 ].reset();
+			close : function () {
+				that.form[0].reset();
 				// allFields.removeClass( 'ui-state-error' );
 			}
 		});
@@ -59,7 +59,11 @@ define([
 
 		show : function () {
 			this.$el.dialog('open');
-			this.$el.find('.employee-edit-dob').datepicker();
+			this.$el.find('.employee-edit-dob').datepicker( {
+				changeMonth : true,
+				changeYear : true,
+				yearRange : '1900:+0'
+			});
 		},
 
 		close : function () {

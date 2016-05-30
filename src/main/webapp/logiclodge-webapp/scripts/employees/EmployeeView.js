@@ -28,14 +28,14 @@ define([
 			this.$el.find('.employee').accordion({
 				collapsible : true,
 				active : false,
-				heightStyle: 'content'
+				heightStyle : 'content'
 			});
 
 			this.$el.find('.editEmployeeButton').button({
-				icons: {
-					secondary: 'ui-icon-pencil'
+				icons : {
+					secondary : 'ui-icon-pencil'
 				}
-			}).on('click', function() {
+			}).on('click', function () {
 				new EditEmployeeDialog({
 					employee : that.model.toJSON(),
 					destroyOnClose : true,
@@ -46,10 +46,10 @@ define([
 			});
 
 			this.$el.find('.deleteEmployeeButton').button({
-				icons: {
-					secondary: 'ui-icon-trash'
+				icons : {
+					secondary : 'ui-icon-trash'
 				}
-			}).on('click', function() {
+			}).on('click', function () {
 				new ConfirmDeleteDialog({
 					name : that.model.get('name'),
 					type : 'Employee',
