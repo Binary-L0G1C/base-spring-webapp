@@ -10,7 +10,7 @@ define([
 		type : '&lt;type&gt;',
 		destroyOnClose : false,
 		deleteCallback : _.noop
-	}
+	};
 
 	function ConfirmDeleteDialog (options) {
 		this._options = _.merge({}, DEFAULT_OPTIONS, options);
@@ -37,7 +37,7 @@ define([
 				}
 			}
 		});
-	};
+	}
 
 	ConfirmDeleteDialog.prototype = {
 		constructor : ConfirmDeleteDialog,
@@ -54,7 +54,7 @@ define([
 				this.$el.dialog('destroy');
 			}
 		}
-	}
+	};
 	
 	return ConfirmDeleteDialog;
 });

@@ -188,7 +188,7 @@
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
-				<version>0.0.29</version>
+				<version>1.0</version>
 				<configuration>
 					<workingDirectory>src/main/webapp/logiclodge-webapp</workingDirectory>
 					<installDirectory>target</installDirectory>
@@ -200,6 +200,7 @@
 						<goals>
 							<goal>install-node-and-npm</goal>
 						</goals>
+						<phase>generate-resources</phase>
 						<configuration>
 							<nodeVersion>v5.3.0</nodeVersion>
 							<npmVersion>3.3.12</npmVersion>
@@ -211,6 +212,16 @@
 						<goals>
 							<goal>npm</goal>
 						</goals>
+					</execution>
+
+					<execution>
+						<id>grunt build</id>
+						<goals>
+							<goal>grunt</goal>
+						</goals>
+						<configuration>
+							<arguments>--no-color</arguments>
+						</configuration>
 					</execution>
 
 				</executions>
@@ -239,7 +250,7 @@
 						</goals>
 						<configuration>
 							<!-- Optional Start -->
-							<finalName>${artifactId}-${version}</finalName>
+							<finalName>${project.artifactId}-${project.version}</finalName>
 							<shadedArtifactAttached>true</shadedArtifactAttached>
 							<shadedClassifierName>jar-with-dependencies</shadedClassifierName>
 							<!-- Optional End -->

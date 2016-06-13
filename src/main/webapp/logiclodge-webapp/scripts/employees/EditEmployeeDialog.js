@@ -9,7 +9,7 @@ define([
 		employee : {},
 		destroyOnClose : false,
 		saveEmployeeCallback : _.noop
-	}
+	};
 
 	function EditEmployeeDialog (options) {
 		this._options = _.merge({}, DEFAULT_OPTIONS, options);
@@ -50,7 +50,7 @@ define([
 			that.saveEmployee($(this));
 			that.close();
 		});
-	};
+	}
 
 	EditEmployeeDialog.prototype = {
 		constructor : EditEmployeeDialog,
@@ -80,7 +80,7 @@ define([
 				imageUrl : $form.find('.employee-edit-url').val()
 			});
 		},
-	}
+	};
 	
 	return EditEmployeeDialog;
 });
