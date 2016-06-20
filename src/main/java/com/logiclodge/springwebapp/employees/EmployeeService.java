@@ -7,13 +7,15 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.logiclodge.springwebapp.base.BaseDao;
+
 @Service
 public class EmployeeService {
 
-	private final EmployeeDao dao;
+	private final BaseDao<Employee> dao;
 
 	@Autowired
-	public EmployeeService(EmployeeDao dao) {
+	public EmployeeService(BaseDao<Employee> dao) {
 		this.dao = dao;
 	}
 
