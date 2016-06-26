@@ -1,0 +1,26 @@
+{
+	"name" : "base-spring-webapp-client",
+	"version" : "0.0.1",
+	"authors" : [
+		"https://github.com/Binary-L0G1C"
+	],
+	"description": "The client portion of Base Spring Webapp",
+	"main": "index.html",
+	"license": "Apache License Version 2.0",
+	"private": true,
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests"
+	],
+	"devDependencies" : {
+		"requirejs" : "^2.2.0",
+		"requirejs-text" : "^2.0.12",
+		"jquery" : "^2.2.2",
+		"lodash" : "^3.10.1",
+		"backbone" : "^1.1.2",
+		"backbone.localstorage" : "^1.1.16"
+	}
+}
