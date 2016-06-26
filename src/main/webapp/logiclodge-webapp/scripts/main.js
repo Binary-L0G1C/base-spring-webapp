@@ -1,10 +1,10 @@
 require.config({ 
 	paths : { 
-		jquery : '../node_modules/jquery/dist/jquery.min',
+		jquery : '../lib-node/node_modules/jquery/dist/jquery.min',
 		'jquery-ui' : '../lib/jquery-ui/jquery-ui.min',
-		lodash : '../node_modules/lodash/index',
-		backbone : '../node_modules/backbone/backbone-min',
-		text : '../node_modules/requirejs-text/text'
+		lodash : '../lib-node/node_modules/lodash/index',
+		backbone : '../lib-node/node_modules/backbone/backbone-min',
+		text : '../lib-node/node_modules/requirejs-text/text'
 	},
 	shim : {
 		backbone : {

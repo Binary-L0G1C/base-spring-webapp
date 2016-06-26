@@ -203,6 +203,11 @@
 		<resources>
 			<resource>
 				<directory>src/main/webapp</directory>
+				<excludes>
+					<exclude>*/node_modules/**</exclude>
+					<exclude>*/less/**</exclude>
+					<exclude>**/package.json</exclude>
+				</excludes>
 			</resource>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -239,6 +244,19 @@
 						<goals>
 							<goal>npm</goal>
 						</goals>
+						<configuration>
+							<arguments>install lib-node --production --prefix lib-node</arguments>
+						</configuration>
+					</execution>
+					
+					<execution>
+						<id>npm install dev</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<arguments>install</arguments>
+						</configuration>
 					</execution>
 
 					<execution>

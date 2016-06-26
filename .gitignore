@@ -2,5 +2,7 @@ target/
 .settings/
 .classpath
 .project
-src/main/webapp/logiclodge-webapp/node_modules/
+**/node_modules/
+**/r.js*
+**/r_js*
 src/main/webapp/logiclodge-webapp/css/
