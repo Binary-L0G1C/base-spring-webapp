@@ -16,7 +16,21 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 
 import com.logiclodge.springwebapp.config.AppConfig;
 
+/**
+ * Entry class into the application. Primarily responsible for setting up Jetty
+ * to wrap the rest of the Spring app.
+ * 
+ * @author David
+ */
 public class Start {
+
+	/**
+	 * Entry method into the application.
+	 * 
+	 * @param args
+	 *            [unused at the moment]
+	 * @throws Exception
+	 */
 	public static void main(final String[] args) throws Exception {
 		Server server = new Server(8181);
 
