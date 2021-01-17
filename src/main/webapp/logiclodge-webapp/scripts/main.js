@@ -4,7 +4,10 @@ require.config({
 		'jquery-ui' : '../lib/jquery-ui/jquery-ui.min',
 		lodash : '../lib-node/node_modules/lodash/index',
 		backbone : '../lib-node/node_modules/backbone/backbone-min',
-		text : '../lib-node/node_modules/requirejs-text/text'
+		backbonews : '../lib-node/node_modules/backbone.ws/backbone-ws',
+		text : '../lib-node/node_modules/requirejs-text/text',
+		stomp : '../lib-node/node_modules/stompjs/lib/stomp.min.js',
+		sockjs : '../lib/sockjs/sockjs.min.js'
 	},
 	shim : {
 		backbone : {

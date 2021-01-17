@@ -52,6 +52,24 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-messaging</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-websocket</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-jaxrs</artifactId>
 			<version>${org.codehaus.jackson.version}</version>
@@ -144,6 +162,30 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.eclipse.jetty.websocket</groupId>
+			<artifactId>websocket-client</artifactId>
+			<version>${org.eclipse.jetty.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty.websocket</groupId>
+			<artifactId>websocket-server</artifactId>
+			<version>${org.eclipse.jetty.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty.websocket</groupId>
+			<artifactId>javax-websocket-server-impl</artifactId>
+			<version>${org.eclipse.jetty.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-client</artifactId>
+			<version>${org.eclipse.jetty.version}</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${org.slf4j.version}</version>
@@ -182,21 +224,21 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>java-hamcrest</artifactId>
 			<version>2.0.0.0</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-all</artifactId>
 			<version>1.9.5</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>
@@ -248,7 +290,7 @@
 							<arguments>install lib-node --production --prefix lib-node</arguments>
 						</configuration>
 					</execution>
-					
+
 					<execution>
 						<id>npm install dev</id>
 						<goals>
@@ -301,16 +343,20 @@
 							<!-- Optional End -->
 
 							<transformers>
-								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 									<resource>META-INF/cxf/bus-extensions.txt</resource>
 								</transformer>
-								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 									<resource>META-INF/spring.handlers</resource>
 								</transformer>
-								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 									<resource>META-INF/spring.schemas</resource>
 								</transformer>
-								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 									<resource>META-INF/spring.tooling</resource>
 								</transformer>
 							</transformers>
@@ -373,10 +419,12 @@
 							<rules>
 								<bannedDependencies>
 									<excludes>
-										<!-- Exclude commons-logging and log4j due to conflict with slf4j and logback -->
+										<!-- Exclude commons-logging and log4j due to conflict with slf4j 
+											and logback -->
 										<exclude>commons-logging:commons-logging</exclude>
 										<exclude>log4j:log4j</exclude>
-										<!-- Exclude org.apache.commons:commons-io due to conflict with commons-io:commons-io -->
+										<!-- Exclude org.apache.commons:commons-io due to conflict with 
+											commons-io:commons-io -->
 										<exclude>org.apache.commons:commons-io</exclude>
 										<!-- Exclude org.hamcrest:hamcrest-core due to conflict with org.hamcrest:hamcrest-all -->
 										<exclude>org.hamcrest:hamcrest-core</exclude>

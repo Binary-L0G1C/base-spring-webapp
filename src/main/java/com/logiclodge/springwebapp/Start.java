@@ -10,6 +10,7 @@ import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.resource.PathResource;
+import org.eclipse.jetty.websocket.jsr356.server.deploy.WebSocketServerContainerInitializer;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -42,6 +43,17 @@ public class Start {
 		context.addEventListener(new ContextLoaderListener());
 		context.setInitParameter("contextClass", AnnotationConfigWebApplicationContext.class.getName());
 		context.setInitParameter("contextConfigLocation", AppConfig.class.getName());
+		
+		/*
+		final ServletHolder servletHolder2 = new ServletHolder(new DispatcherServlet());
+		final ServletContextHandler context2 = new ServletContextHandler();
+		context2.setContextPath("/");
+		context2.addServlet(servletHolder2, "/stuff/*");
+		context2.addEventListener(new ContextLoaderListener());
+		context2.setInitParameter("contextClass", AnnotationConfigWebApplicationContext.class.getName());
+		context2.setInitParameter("contextConfigLocation", AppConfig2.class.getName());
+		context2.setInitParameter("dispatchOptionsRequest", "true");
+		*/
 
 		final ResourceHandler resource_handler = new ResourceHandler();
 		resource_handler.setDirectoriesListed(true);
@@ -59,6 +71,7 @@ public class Start {
 		final HandlerList handlers = new HandlerList();
 		handlers.setHandlers(new Handler[] { resource_handler, context });
 		server.setHandler(handlers);
+		WebSocketServerContainerInitializer.configureContext(context);
 		server.start();
 		server.join();
 	}
