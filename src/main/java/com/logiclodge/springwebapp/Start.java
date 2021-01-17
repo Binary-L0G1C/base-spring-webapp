@@ -27,8 +27,7 @@ public class Start {
 	/**
 	 * Entry method into the application.
 	 * 
-	 * @param args
-	 *            [unused at the moment]
+	 * @param args [unused at the moment]
 	 * @throws Exception
 	 */
 	public static void main(final String[] args) throws Exception {

@@ -2,8 +2,8 @@ define([
 	'jquery', 
 	'lodash',
 	'backbone',
-	'home/homeView',
-	'employees/employeesView'
+	'home/HomeView',
+	'employees/EmployeesView'
 ], function ($, _, Backbone, HomeView, EmployeesView) {
 	var Router = Backbone.Router.extend({
 		initialize : function () {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -11,11 +12,13 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<org.apache.cxf.version>3.1.6</org.apache.cxf.version>
-		<org.eclipse.jetty.version> 9.2.15.v20160210</org.eclipse.jetty.version>
-		<org.springframework.version>4.2.0.RELEASE</org.springframework.version>
-		<org.codehaus.jackson.version>1.9.11</org.codehaus.jackson.version>
-		<org.slf4j.version>1.7.21</org.slf4j.version>
+		<org.apache.cxf.version>3.4.2</org.apache.cxf.version>
+		<org.eclipse.jetty.version>9.4.35.v20201120</org.eclipse.jetty.version>
+		<org.springframework.version>5.3.3</org.springframework.version>
+		<org.codehaus.jackson.version>2.12.1</org.codehaus.jackson.version>
+		<org.slf4j.version>1.7.30</org.slf4j.version>
+
+		<org.junit.version>5.7.0</org.junit.version>
 
 	</properties>
 
@@ -24,7 +27,7 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.4</version>
+			<version>3.11</version>
 		</dependency>
 
 		<dependency>
@@ -52,14 +55,14 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-jaxrs</artifactId>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
 			<version>${org.codehaus.jackson.version}</version>
 		</dependency>
 
 		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
 			<version>${org.codehaus.jackson.version}</version>
 		</dependency>
 
@@ -81,15 +84,15 @@
 			<version>${org.apache.cxf.version}</version>
 			<exclusions>
 				<exclusion>
-					<groupId>>org.eclipse.jetty</groupId>
+					<groupId>org.eclipse.jetty</groupId>
 					<artifactId>jetty-io</artifactId>
 				</exclusion>
 				<exclusion>
-					<groupId>>org.eclipse.jetty</groupId>
+					<groupId>org.eclipse.jetty</groupId>
 					<artifactId>jetty-security</artifactId>
 				</exclusion>
 				<exclusion>
-					<groupId>>org.eclipse.jetty</groupId>
+					<groupId>org.eclipse.jetty</groupId>
 					<artifactId>jetty-continuation</artifactId>
 				</exclusion>
 			</exclusions>
@@ -171,32 +174,33 @@
 		</dependency>
 
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>${org.junit.version}</version>
 			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.hamcrest</groupId>
-					<artifactId>hamcrest-core</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>${org.junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>org.hamcrest</groupId>
-			<artifactId>java-hamcrest</artifactId>
-			<version>2.0.0.0</version>
+			<artifactId>hamcrest</artifactId>
+			<version>2.2</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
-			<version>1.9.5</version>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>3.7.7</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 	</dependencies>
 
 	<build>
@@ -220,7 +224,7 @@
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
-				<version>1.0</version>
+				<version>1.11.0</version>
 				<configuration>
 					<workingDirectory>src/main/webapp/logiclodge-webapp</workingDirectory>
 					<installDirectory>target</installDirectory>
@@ -248,7 +252,7 @@
 							<arguments>install lib-node --production --prefix lib-node</arguments>
 						</configuration>
 					</execution>
-					
+
 					<execution>
 						<id>npm install dev</id>
 						<goals>
@@ -275,17 +279,17 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.0</version>
+				<version>3.8.1</version>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>1.11</source>
+					<target>1.11</target>
 				</configuration>
 			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
-				<version>2.4.1</version>
+				<version>3.2.4</version>
 				<executions>
 
 					<execution>
@@ -301,16 +305,20 @@
 							<!-- Optional End -->
 
 							<transformers>
-								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 									<resource>META-INF/cxf/bus-extensions.txt</resource>
 								</transformer>
-								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 									<resource>META-INF/spring.handlers</resource>
 								</transformer>
-								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 									<resource>META-INF/spring.schemas</resource>
 								</transformer>
-								<transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 									<resource>META-INF/spring.tooling</resource>
 								</transformer>
 							</transformers>
@@ -333,6 +341,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.2.0</version>
 				<configuration>
 					<archive>
 						<manifest>
@@ -345,7 +354,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
-				<version>1.4.1</version>
+				<version>3.0.0-M3</version>
 				<inherited>true</inherited>
 
 				<executions>
@@ -373,10 +382,12 @@
 							<rules>
 								<bannedDependencies>
 									<excludes>
-										<!-- Exclude commons-logging and log4j due to conflict with slf4j and logback -->
+										<!-- Exclude commons-logging and log4j due to conflict with slf4j 
+											and logback -->
 										<exclude>commons-logging:commons-logging</exclude>
 										<exclude>log4j:log4j</exclude>
-										<!-- Exclude org.apache.commons:commons-io due to conflict with commons-io:commons-io -->
+										<!-- Exclude org.apache.commons:commons-io due to conflict with 
+											commons-io:commons-io -->
 										<exclude>org.apache.commons:commons-io</exclude>
 										<!-- Exclude org.hamcrest:hamcrest-core due to conflict with org.hamcrest:hamcrest-all -->
 										<exclude>org.hamcrest:hamcrest-core</exclude>

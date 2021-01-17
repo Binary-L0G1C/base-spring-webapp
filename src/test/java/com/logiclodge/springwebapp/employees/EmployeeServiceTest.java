@@ -7,8 +7,8 @@ import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.when;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
@@ -17,13 +17,13 @@ import com.logiclodge.springwebapp.base.BaseDao;
 
 public class EmployeeServiceTest {
 
-	BaseDao<Employee> employeeDao;
+	BaseDao<Employee> employeeDao; 
 
 	EmployeeService service;
 
 	private static final String UUID_REGEX = "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}";
 
-	@Before
+	@BeforeEach
 	public void before() {
 		employeeDao = getDaoMock();
 		service = new EmployeeService(employeeDao);

@@ -9,12 +9,12 @@ import javax.ws.rs.ext.RuntimeDelegate;
 import org.apache.cxf.bus.spring.SpringBus;
 import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
-import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
+import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.logiclodge.springwebapp.base.BaseResource;
 
 @Configuration
