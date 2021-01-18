@@ -38,8 +38,8 @@ define([
 
 			this.collection.each(function (employee) {
 				var employeeView = new EmployeeView({model : employee});
-				this.$el.find('#employeeList').append(employeeView.render().el);
-			}, this);
+				that.$el.find('#employeeList').append(employeeView.render().el);
+			});
 
 			this.$el.find('.addEmployeeButton').button({
 				icons : {
